@@ -10,7 +10,7 @@ const Home = () => {
         transition={{ duration: 1 }}
         className="text-center  text-white">
         <h1 className="text-6xl text-se font-bold">Hi, I'm Prajwal</h1>
-        <p className="mt-4 text-2xl font-semibold ">A MERN Stack Developer & Ruchita's  Husband </p>
+        <p className="mt-4 text-2xl font-semibold ">A MERN Stack Developer </p>
       </motion.div>
     </section>
   );
