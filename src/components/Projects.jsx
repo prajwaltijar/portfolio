@@ -1,66 +1,291 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaGithub } from 'react-icons/fa';
+import { HiOutlineCodeBracket } from 'react-icons/hi2';
 
 const projects = [
-  { title: 'Portfolio Website', desc: 'My personal portfolio built with React', link: '#' },
-  { title: 'E-commerce App', desc: 'career path for student', link: 'https://prajwalsondawalek.netlify.app/' },
-  { title: 'Blog Platform', desc: 'Full-stack blog using MERN', link: '#' },
+  {
+    title: 'Career Path App',
+    desc: 'Career guidance platform helping students explore different paths and resources. Features user authentication and personalized roadmaps.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Express'],
+    image: null, // Add your image path here later
+    link: 'https://prajwalsondawalek.netlify.app/',
+    github: '#',
+  },
+  {
+    title: 'Blog Platform',
+    desc: 'Full-stack blog application with user authentication, CRUD operations, rich text editor integration, and a comment system.',
+    tech: ['MongoDB', 'Express', 'React', 'Node.js'],
+    image: null, // Add your image path here later
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'Portfolio Website',
+    desc: 'Personal portfolio developed with React, utilizing a modular design system and custom smooth-scroll animations for premium UX.',
+    tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+    image: null, // Add your image path here later
+    link: '#',
+    github: '#',
+  },
 ];
 
-const fadeInUp = {
+/* ── Animation Variants ── */
+const container = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+};
+
+/* ── Styles ── */
+const styles = {
+  section: {
+    paddingTop: 120,
+    paddingBottom: 120,
+    position: 'relative',
+  },
+  headerWrap: {
+    marginBottom: 72,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  subtitle: {
+    maxWidth: 640,
+    fontSize: 'clamp(15px, 2.5vw, 17px)',
+    lineHeight: 1.7,
+    color: 'var(--text-muted)',
+  },
+  titleHighlight: {
+    color: 'var(--accent)',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: 28,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    overflow: 'hidden',
+    padding: 0,
+    borderRadius: 16,
+    background: 'rgba(16, 32, 28, 0.5)',
+    border: '1px solid rgba(132, 214, 161, 0.1)',
+    transition: 'border-color 0.4s ease, transform 0.4s ease',
+    cursor: 'pointer',
+  },
+  imageContainer: {
+    position: 'relative',
+    width: '100%',
+    aspectRatio: '16 / 10',
+    borderRadius: '12px 12px 0 0',
+    overflow: 'hidden',
+    background: 'linear-gradient(145deg, rgba(20, 38, 32, 0.8), rgba(10, 22, 18, 0.9))',
+    borderBottom: '1px solid rgba(132, 214, 161, 0.08)',
+  },
+  imagePlaceholder: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(160deg, rgba(22, 44, 36, 0.6) 0%, rgba(8, 18, 14, 0.8) 100%)',
+  },
+  projectImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'top',
+  },
+  iconBadge: {
+    position: 'absolute',
+    bottom: -18,
+    left: 24,
+    width: 42,
+    height: 42,
+    borderRadius: 12,
+    background: 'rgba(16, 32, 28, 0.95)',
+    border: '1px solid rgba(132, 214, 161, 0.2)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'var(--accent)',
+    fontSize: 20,
+    zIndex: 2,
+    backdropFilter: 'blur(8px)',
+    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+  },
+  cardContent: {
+    padding: '30px 24px 24px',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  cardTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: 20,
+    fontWeight: 600,
+    color: 'var(--text-primary)',
+    marginBottom: 12,
+    letterSpacing: '-0.02em',
+    lineHeight: 1.3,
+  },
+  cardDesc: {
+    fontSize: 14,
+    lineHeight: 1.65,
+    color: 'var(--text-muted)',
+    marginBottom: 24,
+    flex: 1,
+  },
+  techRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 'auto',
+  },
+  techPill: {
+    fontSize: 12,
+    fontWeight: 500,
+    color: 'var(--accent)',
+    fontFamily: 'var(--font-display)',
+    letterSpacing: '0.01em',
+    padding: '6px 14px',
+    borderRadius: 99,
+    border: '1px solid rgba(132, 214, 161, 0.15)',
+    background: 'rgba(132, 214, 161, 0.05)',
+    transition: 'all 0.3s ease',
+    whiteSpace: 'nowrap',
+  },
+  githubBtn: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    padding: '14px 36px',
+    background: 'transparent',
+    color: 'var(--text-primary)',
+    fontWeight: 500,
+    fontSize: 15,
+    border: '1px solid rgba(132, 214, 161, 0.2)',
+    borderRadius: 99,
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    textDecoration: 'none',
+  },
 };
 
 const Projects = () => {
   return (
-    <section 
-      id="projects" 
-      className="min-h-screen flex flex-col items-center justify-center 
-                 bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white px-6 py-16"
-    >
-      {/* Animated Heading */}
-      <motion.h2 
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="text-5xl font-extrabold mb-16 text-transparent bg-clip-text 
-                   bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400 tracking-wider"
-      >
-        🚀 My Projects
-      </motion.h2>
+    <section id="projects" style={styles.section}>
+      <div className="section-wrap relative z-10">
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl w-full">
-        {projects.map((proj, i) => (
-          <motion.div 
-            key={i}
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-xl text-center 
-                       shadow-lg hover:shadow-[0_0_20px_#ec4899] 
-                       border border-pink-500/30 transition-all duration-300 
-                       hover:scale-105"
-          >
-            <h3 className="text-2xl font-semibold mb-3 text-cyan-300">{proj.title}</h3>
-            <p className="mb-6 text-gray-300">{proj.desc}</p>
-            
-            <motion.a 
-              href={proj.link} 
-              whileHover={{ scale: 1.1 }}
-              className="inline-block px-6 py-2 rounded-lg 
-                         bg-gradient-to-r from-pink-500 to-purple-600 
-                         text-white font-semibold shadow-lg
-                         hover:from-purple-600 hover:to-pink-500 transition-all"
+        {/* Header */}
+        <motion.div
+          initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+          style={styles.headerWrap}
+        >
+          <span className="section-label">Selected Work</span>
+          <h2 className="section-title">
+            Projects <span style={styles.titleHighlight}>Showcase</span>
+          </h2>
+          <p style={styles.subtitle}>
+            A collection of robust full-stack applications.<br />
+            Focusing on intuitive interfaces and scalable architectures that solve real-world problems.
+          </p>
+        </motion.div>
+
+        {/* Grid */}
+        <motion.div
+          variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
+          style={styles.grid}
+        >
+          {projects.map((proj, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              style={styles.card}
+              whileHover={{ borderColor: 'rgba(132, 214, 161, 0.3)', y: -6 }}
+              transition={{ duration: 0.35 }}
             >
-              View Project
-            </motion.a>
-          </motion.div>
-        ))}
+              {/* Image Area */}
+              <div style={styles.imageContainer}>
+                {proj.image ? (
+                  <img src={proj.image} alt={proj.title} style={styles.projectImage} />
+                ) : (
+                  <div style={styles.imagePlaceholder}>
+                    {/* Empty placeholder — add your images later */}
+                  </div>
+                )}
+                {/* Icon Badge */}
+                <div style={styles.iconBadge}>
+                  <HiOutlineCodeBracket />
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div style={styles.cardContent}>
+                <h3 style={styles.cardTitle}>{proj.title}</h3>
+                <p style={styles.cardDesc}>{proj.desc}</p>
+
+                {/* Tech Pills */}
+                <div style={styles.techRow}>
+                  {proj.tech.map((t, j) => (
+                    <span key={j} style={styles.techPill}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Explore GitHub Button */}
+        <motion.div
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.8 }}
+          style={{ display: 'flex', justifyContent: 'center', marginTop: 64 }}
+        >
+          <a
+            href="https://github.com/prajwaltijar?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.githubBtn}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'rgba(132, 214, 161, 0.5)';
+              e.currentTarget.style.color = 'var(--accent)';
+              e.currentTarget.style.background = 'rgba(132, 214, 161, 0.05)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'rgba(132, 214, 161, 0.2)';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            <FaGithub size={18} /> Explore GitHub
+          </a>
+        </motion.div>
+
       </div>
+
+      {/* ── Responsive Styles ── */}
+      <style>{`
+        @media (max-width: 1024px) {
+          #projects .section-wrap > div:nth-child(2) {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 680px) {
+          #projects .section-wrap > div:nth-child(2) {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
