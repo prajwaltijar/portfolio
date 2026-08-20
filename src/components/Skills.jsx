@@ -156,7 +156,7 @@ const SectionLabel = ({ children }) => (
 
 const Skills = () => {
     return (
-        <section id="skills" style={{ paddingTop: 120, paddingBottom: 0, position: 'relative' }}>
+        <section id="skills" className="py-24 md:py-[120px]" style={{ paddingBottom: 0, position: 'relative' }}>
             <div className="section-wrap">
 
                 {/* ═══ HEADER ═══ */}
@@ -164,58 +164,27 @@ const Skills = () => {
                     initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}
                     variants={stagger}
                     style={{
-                        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
-                        marginBottom: 72, gap: 40, flexWrap: 'wrap',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+                        marginBottom: 72, gap: 16,
                     }}
                 >
-                    <motion.div variants={fadeUp} style={{ maxWidth: 520 }}>
-                        <span className="section-label">My Skills</span>
+                    <motion.div variants={fadeUp} style={{ maxWidth: 740 }}>
+                        <span className="section-label" style={{ textAlign: 'center', margin: '0 auto 16px' }}>My Skills</span>
                         <h2 className="section-title" style={{ marginBottom: 16 }}>
-                            Technologies <span style={{ color: 'var(--accent)' }}>I work with</span>
+                            Technologies <span style={{ color: 'var(--accent)', whiteSpace: 'nowrap' }}>I work with</span>
                         </h2>
                         <p style={{
                             fontSize: 15, lineHeight: 1.7, color: 'var(--text-muted)',
                         }}>
-                            A diverse set of technologies, frameworks, and tools that I use<br />
-                            to build modern, scalable, and high-performance web applications.
+                            A diverse set of technologies, frameworks, and tools that I use<br className="hidden md:block" /> to build modern, scalable, and high-performance web applications.
                         </p>
-                    </motion.div>
-
-                    {/* Always Learning Badge */}
-                    <motion.div
-                        variants={fadeUp}
-                        style={{
-                            background: 'rgba(16, 32, 28, 0.6)',
-                            border: '1px solid rgba(132, 214, 161, 0.12)',
-                            borderRadius: 14, padding: '20px 24px',
-                            display: 'flex', gap: 14, alignItems: 'center',
-                            maxWidth: 340, minWidth: 280,
-                        }}
-                    >
-                        <div style={{
-                            width: 48, height: 48, borderRadius: 12,
-                            background: 'rgba(132, 214, 161, 0.1)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0,
-                        }}>
-                            <HiOutlineAcademicCap size={24} style={{ color: 'var(--accent)' }} />
-                        </div>
-                        <div>
-                            <div style={{
-                                fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 600,
-                                color: 'var(--text-primary)', marginBottom: 4,
-                            }}>Always Learning</div>
-                            <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                                I'm constantly exploring new technologies and improving my skills.
-                            </div>
-                        </div>
                     </motion.div>
                 </motion.div>
 
                 {/* ═══ LANGUAGES ═══ */}
                 <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={stagger} style={{ marginBottom: 48 }}>
                     <SectionLabel>Languages</SectionLabel>
-                    <div style={{
+                    <div className="skills-lang-grid" style={{
                         display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16,
                     }}>
                         {languages.map((s, i) => <SkillCard key={s.name} skill={s} index={i} />)}
@@ -225,7 +194,7 @@ const Skills = () => {
                 {/* ═══ FRONTEND ═══ */}
                 <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={stagger} style={{ marginBottom: 48 }}>
                     <SectionLabel>Frontend</SectionLabel>
-                    <div style={{
+                    <div className="skills-fe-grid" style={{
                         display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16,
                     }}>
                         {frontend.map((s, i) => <SkillCard key={s.name} skill={s} index={i} />)}
@@ -235,6 +204,7 @@ const Skills = () => {
                 {/* ═══ BACKEND + OTHER TOOLS (side by side) ═══ */}
                 <motion.div
                     initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={stagger}
+                    className="skills-be-tools"
                     style={{
                         display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28, marginBottom: 48,
                         alignItems: 'start',
@@ -243,7 +213,7 @@ const Skills = () => {
                     {/* Backend */}
                     <div>
                         <SectionLabel>Backend</SectionLabel>
-                        <div style={{
+                        <div className="skills-be-inner" style={{
                             display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16,
                         }}>
                             {backend.map((s, i) => <SkillCard key={s.name} skill={s} index={i} />)}
@@ -303,7 +273,7 @@ const Skills = () => {
                 {/* ═══ DATABASES ═══ */}
                 <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={stagger} style={{ marginBottom: 64 }}>
                     <SectionLabel>Databases</SectionLabel>
-                    <div style={{
+                    <div className="skills-db-grid" style={{
                         display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, maxWidth: '50%',
                     }}>
                         {databases.map((s, i) => <SkillCard key={s.name} skill={s} index={i} />)}
@@ -313,7 +283,7 @@ const Skills = () => {
                 {/* ═══ CORE COMPETENCIES ═══ */}
                 <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={stagger} style={{ marginBottom: 64 }}>
                     <SectionLabel>Core Competencies</SectionLabel>
-                    <div style={{
+                    <div className="skills-comp-grid" style={{
                         display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16,
                     }}>
                         {competencies.map((comp, i) => {
@@ -332,18 +302,21 @@ const Skills = () => {
                                     }}
                                     whileHover={{ borderColor: 'rgba(132, 214, 161, 0.3)', y: -4 }}
                                 >
-                                    <div style={{
-                                        width: 42, height: 42, borderRadius: 10,
-                                        background: 'rgba(132, 214, 161, 0.08)',
-                                        border: '1px solid rgba(132, 214, 161, 0.12)',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    }}>
-                                        <Icon size={20} style={{ color: 'var(--accent)' }} />
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                                        <div style={{
+                                            width: 42, height: 42, borderRadius: 10,
+                                            background: 'rgba(132, 214, 161, 0.08)',
+                                            border: '1px solid rgba(132, 214, 161, 0.12)',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            flexShrink: 0
+                                        }}>
+                                            <Icon size={20} style={{ color: 'var(--accent)' }} />
+                                        </div>
+                                        <div style={{
+                                            fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600,
+                                            color: 'var(--text-primary)', letterSpacing: '-0.01em',
+                                        }}>{comp.title}</div>
                                     </div>
-                                    <div style={{
-                                        fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600,
-                                        color: 'var(--text-primary)', letterSpacing: '-0.01em',
-                                    }}>{comp.title}</div>
                                     <div style={{
                                         fontSize: 13, lineHeight: 1.55, color: 'var(--text-muted)',
                                     }}>{comp.desc}</div>
@@ -361,13 +334,14 @@ const Skills = () => {
                             const Icon = item.icon;
                             return (
                                 <div key={item.name} style={{
-                                    display: 'inline-flex', alignItems: 'center', gap: 10,
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                                     padding: '10px 20px', borderRadius: 99,
                                     background: 'rgba(16, 32, 28, 0.5)',
                                     border: '1px solid rgba(132, 214, 161, 0.12)',
                                     fontSize: 13, fontWeight: 500, color: 'var(--text-primary)',
                                     fontFamily: 'var(--font-display)',
                                     transition: 'all 0.3s ease', cursor: 'default',
+                                    flex: '1 1 auto',
                                 }}
                                     onMouseEnter={e => {
                                         e.currentTarget.style.borderColor = 'rgba(132, 214, 161, 0.35)';
@@ -393,29 +367,29 @@ const Skills = () => {
                     style={{
                         background: 'linear-gradient(135deg, rgba(16, 32, 28, 0.8), rgba(22, 44, 36, 0.6))',
                         border: '1px solid rgba(132, 214, 161, 0.15)',
-                        borderRadius: 16, padding: '36px 40px',
+                        borderRadius: 16, padding: '28px 24px',
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                         flexWrap: 'wrap', gap: 24,
-                        marginBottom: 120,
+                        marginBottom: 32,
                     }}
                 >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                        <div style={{
-                            width: 44, height: 44, borderRadius: 12,
-                            background: 'rgba(132, 214, 161, 0.1)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0,
-                        }}>
-                            <HiOutlineRocketLaunch size={22} style={{ color: 'var(--accent)' }} />
-                        </div>
-                        <div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <div style={{
+                                width: 44, height: 44, borderRadius: 12,
+                                background: 'rgba(132, 214, 161, 0.1)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                flexShrink: 0,
+                            }}>
+                                <HiOutlineRocketLaunch size={22} style={{ color: 'var(--accent)' }} />
+                            </div>
                             <div style={{
                                 fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 600,
-                                color: 'var(--text-primary)', marginBottom: 4,
+                                color: 'var(--text-primary)',
                             }}>Let's build something amazing together!</div>
-                            <div style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                                I'm always open to discussing new opportunities and exciting projects.
-                            </div>
+                        </div>
+                        <div style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                            I'm always open to discussing new opportunities and exciting projects.
                         </div>
                     </div>
                     <Link to="contact" smooth duration={500} style={{ textDecoration: 'none' }}>
@@ -452,14 +426,19 @@ const Skills = () => {
           #skills .skills-comp-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
         @media (max-width: 768px) {
+          #skills .skills-lang-grid { grid-template-columns: repeat(2, 1fr) !important; }
           #skills .skills-fe-grid { grid-template-columns: repeat(2, 1fr) !important; }
           #skills .skills-comp-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          #skills .skills-db-grid { max-width: 100% !important; }
+          #skills .skills-db-grid { max-width: 100% !important; grid-template-columns: repeat(3, 1fr) !important; }
+          #skills .skills-be-tools { grid-template-columns: 1fr !important; gap: 24px !important; }
+          #skills .skills-be-inner { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 540px) {
-          #skills .skills-lang-grid,
-          #skills .skills-fe-grid,
+          #skills .skills-lang-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          #skills .skills-fe-grid { grid-template-columns: repeat(2, 1fr) !important; }
           #skills .skills-comp-grid { grid-template-columns: 1fr !important; }
+          #skills .skills-db-grid { max-width: 100% !important; grid-template-columns: repeat(2, 1fr) !important; }
+          #skills .skills-be-inner { grid-template-columns: 1fr !important; }
         }
       `}</style>
         </section>

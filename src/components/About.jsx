@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import profileImg from '../assets/images/ChatGPT Image Aug 19, 2026, 01_59_26 PM.png';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaRocket, FaCode, FaMobileAlt, FaRegUser } from 'react-icons/fa';
@@ -52,8 +52,31 @@ const fadeUp = {
 };
 
 const About = () => {
+  const [matterText, setMatterText] = useState('');
+
+  useEffect(() => {
+    const role = 'Matter.';
+    let characterIndex = 0;
+    let deleting = false;
+
+    const typeRole = () => {
+      setMatterText(role.slice(0, characterIndex));
+
+      if (!deleting && characterIndex < role.length) {
+        characterIndex += 1;
+      } else if (deleting && characterIndex > 0) {
+        characterIndex -= 1;
+      } else {
+        deleting = !deleting;
+      }
+    };
+
+    const interval = setInterval(typeRole, deleting ? 70 : 110);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="about" style={{ paddingTop: 120, paddingBottom: 120, position: 'relative' }}>
+    <section id="about" className="py-24 md:py-[120px]" style={{ position: 'relative' }}>
       <div className="section-wrap relative z-10">
 
         {/* Top 2 columns (Hero-like About section) */}
@@ -76,7 +99,7 @@ const About = () => {
               letterSpacing: '-0.02em',
               marginBottom: 24
             }}>
-              Building Digital <br /> Experiences That <br /> <span style={{ color: 'var(--accent)' }}>Matter.</span>
+              Building Digital <br /> Experiences <br /> <span style={{ whiteSpace: 'nowrap' }}>That <span style={{ color: 'var(--accent)' }}>{matterText}</span><span style={{ color: 'var(--accent)', fontWeight: 300, opacity: 0.8 }}></span></span>
             </motion.h2>
             <motion.p variants={fadeUp} style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20 }}>
               I'm a passionate MERN Stack Developer who loves turning ideas into real-world web applications. I enjoy crafting clean, efficient, and user-friendly solutions that solve problems and create impact.
@@ -86,7 +109,7 @@ const About = () => {
             </motion.p>
 
             {/* Buttons */}
-            <motion.div variants={fadeUp} style={{ display: 'flex', gap: 16, marginBottom: 40, flexWrap: 'wrap' }}>
+            <motion.div variants={fadeUp} className="home-actions" style={{ marginBottom: 40 }}>
               <Link to="projects" smooth duration={600} offset={-80}>
                 <button className="btn-primary" style={{ padding: '12px 24px', borderRadius: '8px', fontSize: 14 }}>
                   View My Work <FiArrowUpRight size={18} />
@@ -137,16 +160,17 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex justify-center w-full md:w-[38%] lg:w-[35%]"
           >
-            <div style={{
-              borderRadius: 32,
-              overflow: 'hidden',
-              border: '1px solid rgba(132, 214, 161, 0.15)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(132, 214, 161, 0.05)',
-              position: 'relative',
-              background: 'rgba(12, 26, 22, 0.6)',
-              display: 'inline-block',
-              width: '87%'
-            }}>
+            <div
+              className="w-full max-w-[340px] md:max-w-none md:w-[87%]"
+              style={{
+                borderRadius: 32,
+                overflow: 'hidden',
+                border: '1px solid rgba(132, 214, 161, 0.15)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(132, 214, 161, 0.05)',
+                position: 'relative',
+                background: 'rgba(12, 26, 22, 0.6)',
+                display: 'inline-block'
+              }}>
               {/* Subtle top-left glow */}
               <div style={{
                 position: 'absolute', top: 0, left: 0, width: '60%', height: '40%',
@@ -207,7 +231,7 @@ const About = () => {
           variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: 24,
             marginBottom: 64
           }}
@@ -219,7 +243,7 @@ const About = () => {
               whileHover={{ scale: 1.03, y: -8 }}
               className="glass-card"
               style={{
-                padding: '48px 32px',
+                padding: '32px 24px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',

@@ -8,10 +8,16 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Traihub from './components/Traihub';
 import Hospital from './components/Hospital';
+import AiInterview from './components/AiInterview';
+import EmployeeManagement from './components/EmployeeManagement';
+import Frutefy from './components/Frutefy';
 
 function App() {
   const [showTraihub, setShowTraihub] = React.useState(false);
   const [showHospital, setShowHospital] = React.useState(false);
+  const [showAi, setShowAi] = React.useState(false);
+  const [showEmployee, setShowEmployee] = React.useState(false);
+  const [showFrutefy, setShowFrutefy] = React.useState(false);
 
   return (
     <div style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
@@ -22,6 +28,9 @@ function App() {
         <Projects
           onExploreTraihub={() => setShowTraihub(true)}
           onExploreHospital={() => setShowHospital(true)}
+          onExploreAi={() => setShowAi(true)}
+          onExploreEmployee={() => setShowEmployee(true)}
+          onExploreFrutefy={() => setShowFrutefy(true)}
         />
         <Skills />
         <Contact />
@@ -29,6 +38,9 @@ function App() {
 
       {showTraihub && <Traihub onClose={() => setShowTraihub(false)} />}
       {showHospital && <Hospital onClose={() => setShowHospital(false)} />}
+      {showAi && <AiInterview onClose={() => setShowAi(false)} />}
+      {showEmployee && <EmployeeManagement onClose={() => setShowEmployee(false)} />}
+      {showFrutefy && <Frutefy onClose={() => setShowFrutefy(false)} />}
     </div>
   );
 }

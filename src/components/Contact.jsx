@@ -36,7 +36,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ paddingTop: 120, paddingBottom: 80, position: 'relative' }}>
+    <section id="contact" style={{ paddingTop: 'clamp(80px, 12vw, 120px)', paddingBottom: 'clamp(60px, 10vw, 80px)', position: 'relative' }}>
       <div className="section-wrap relative z-10">
 
         {/* Main 2-col layout */}
@@ -137,7 +137,7 @@ const Contact = () => {
                 background: 'rgba(20, 36, 36, 0.4)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 24,
-                padding: '36px 32px',
+                padding: 'clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 0
@@ -155,7 +155,7 @@ const Contact = () => {
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {/* Name + Email row */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div className="contact-name-email-grid" style={{ display: 'grid', gap: 16 }}>
                     <div>
                       <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)', marginBottom: 6 }}>Your Name</label>
                       <input
@@ -269,10 +269,9 @@ const Contact = () => {
             }}
           >
             {bottomFeatures.map((feat, i) => (
-              <div key={i} style={{
+              <div key={i} className="contact-bottom-feat" style={{
                 display: 'flex', alignItems: 'center', gap: 16,
                 padding: '20px 24px',
-                borderRight: i < bottomFeatures.length - 1 ? '1px solid var(--border-subtle)' : 'none',
               }}>
                 <div style={{ width: 40, height: 40, borderRadius: 10, background: 'var(--accent-glow)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   {feat.icon}
@@ -288,7 +287,7 @@ const Contact = () => {
         </motion.div>
 
         {/* Footer */}
-        <div style={{ marginTop: 80, borderTop: '1px solid var(--border-subtle)', paddingTop: 40, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <div style={{ marginTop: 'clamp(40px, 8vw, 80px)', borderTop: '1px solid var(--border-subtle)', paddingTop: 'clamp(24px, 5vw, 40px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 10, letterSpacing: '-0.02em' }}>
             prajwal<span style={{ color: 'var(--accent)' }}>.</span>
           </span>
@@ -298,6 +297,30 @@ const Contact = () => {
         </div>
 
       </div>
+
+      <style>{`
+        .contact-name-email-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .contact-bottom-feat {
+          border-right: 1px solid var(--border-subtle);
+        }
+        .contact-bottom-feat:last-child {
+          border-right: none;
+        }
+        @media (max-width: 767px) {
+          .contact-name-email-grid {
+            grid-template-columns: 1fr;
+          }
+          .contact-bottom-feat {
+            border-right: none;
+            border-bottom: 1px solid var(--border-subtle);
+          }
+          .contact-bottom-feat:last-child {
+            border-bottom: none;
+          }
+        }
+      `}</style>
     </section>
   );
 };

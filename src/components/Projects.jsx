@@ -4,6 +4,9 @@ import { FaGithub } from 'react-icons/fa';
 import { HiOutlineCodeBracket } from 'react-icons/hi2';
 import imgPowerfit from '../assets/images/powerfit.png';
 import imgHospitalAdmin from '../assets/images/hospital Admin.png';
+import imgAiLogin from '../assets/images/Ai inteview loging.png';
+import imgEms from '../assets/images/ems employee (1).png';
+import imgFrutefy from '../assets/images/frute home (1).png';
 
 const projects = [
   {
@@ -31,6 +34,33 @@ const projects = [
     link: '#',
     github: '#',
     isHospital: true,
+  },
+  {
+    title: 'AI Interview Platform',
+    desc: 'An AI-powered mock interview platform with intelligent question generation, resume analysis, real-time feedback, and detailed performance reports.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'AI/ML'],
+    image: imgAiLogin,
+    link: '#',
+    github: '#',
+    isAiInterview: true,
+  },
+  {
+    title: 'Employee Management System',
+    desc: 'A full-featured HR platform to manage employee records, track attendance, handle leave requests, and process payroll with a clean admin dashboard.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+    image: imgEms,
+    link: '#',
+    github: '#',
+    isEmployee: true,
+  },
+  {
+    title: 'Frutefy E-Commerce',
+    desc: 'A premium platform dedicated to delivering farm-fresh, organic fruits directly to the consumer\'s doorstep with seamless shopping and health advocacy.',
+    tech: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+    image: imgFrutefy,
+    link: '#',
+    github: '#',
+    isFrutefy: true,
   },
 ];
 
@@ -104,8 +134,9 @@ const styles = {
   projectImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
-    objectPosition: 'top',
+    objectFit: 'contain',
+    objectPosition: 'center',
+    background: '#0c1a16', // Dark background behind contained image
   },
   iconBadge: {
     position: 'absolute',
@@ -126,25 +157,25 @@ const styles = {
     boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
   },
   cardContent: {
-    padding: '30px 24px 24px',
+    padding: '24px 20px 20px',
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
   },
   cardTitle: {
     fontFamily: 'var(--font-display)',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 600,
     color: 'var(--text-primary)',
-    marginBottom: 12,
+    marginBottom: 8,
     letterSpacing: '-0.02em',
     lineHeight: 1.3,
   },
   cardDesc: {
-    fontSize: 14,
-    lineHeight: 1.65,
+    fontSize: 13,
+    lineHeight: 1.6,
     color: 'var(--text-muted)',
-    marginBottom: 24,
+    marginBottom: 16,
     flex: 1,
   },
   techRow: {
@@ -154,12 +185,12 @@ const styles = {
     marginTop: 'auto',
   },
   techPill: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 500,
     color: 'var(--accent)',
     fontFamily: 'var(--font-display)',
     letterSpacing: '0.01em',
-    padding: '6px 14px',
+    padding: '4px 10px',
     borderRadius: 99,
     border: '1px solid rgba(132, 214, 161, 0.15)',
     background: 'rgba(132, 214, 161, 0.05)',
@@ -184,7 +215,7 @@ const styles = {
   },
 };
 
-const Projects = ({ onExploreTraihub, onExploreHospital }) => {
+const Projects = ({ onExploreTraihub, onExploreHospital, onExploreAi, onExploreEmployee, onExploreFrutefy }) => {
   return (
     <section id="projects" style={styles.section}>
       <div className="section-wrap relative z-10">
@@ -268,6 +299,66 @@ const Projects = ({ onExploreTraihub, onExploreHospital }) => {
                 {proj.isHospital && (
                   <button
                     onClick={() => onExploreHospital && onExploreHospital()}
+                    style={{
+                      marginTop: 20,
+                      padding: '10px 20px',
+                      background: 'var(--accent)',
+                      color: 'var(--bg-deep)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
+                {proj.isAiInterview && (
+                  <button
+                    onClick={() => onExploreAi && onExploreAi()}
+                    style={{
+                      marginTop: 20,
+                      padding: '10px 20px',
+                      background: 'var(--accent)',
+                      color: 'var(--bg-deep)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
+                {proj.isEmployee && (
+                  <button
+                    onClick={() => onExploreEmployee && onExploreEmployee()}
+                    style={{
+                      marginTop: 20,
+                      padding: '10px 20px',
+                      background: 'var(--accent)',
+                      color: 'var(--bg-deep)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
+                {proj.isFrutefy && (
+                  <button
+                    onClick={() => onExploreFrutefy && onExploreFrutefy()}
                     style={{
                       marginTop: 20,
                       padding: '10px 20px',

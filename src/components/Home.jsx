@@ -62,7 +62,7 @@ const Home = () => {
         initial="hidden"
         animate="show"
         className="section-wrap home-content"
-          style={{ zIndex: 10 }}
+        style={{ zIndex: 10 }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1 }}>
 
@@ -142,8 +142,37 @@ const Home = () => {
             </a>
           </motion.div>
 
+          {/* Features Cards Container */}
+          <motion.div variants={fadeUp} className="home-features" style={{ marginBottom: 32 }}>
+            {features.map((feat, i) => (
+              <div key={i} className="home-feature">
+                <div style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  background: 'var(--bg-glass)',
+                  color: 'var(--accent)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  {feat.icon}
+                </div>
+                <div>
+                  <h4 style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 2 }}>
+                    {feat.title}
+                  </h4>
+                  <p style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                    {feat.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
           {/* Bottom Area: Socials & Scroll */}
-          <motion.div variants={fadeUp} className="home-bottom-area" style={{ marginBottom: 20 }}>
+          <motion.div variants={fadeUp} className="home-bottom-area">
             {/* Let's Connect */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
@@ -176,43 +205,6 @@ const Home = () => {
                 ))}
               </div>
             </div>
-
-            {/* Scroll Down */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                SCROLL DOWN
-              </span>
-              <FiArrowDown size={16} color="var(--accent)" />
-            </div>
-          </motion.div>
-
-          {/* Features Cards Container */}
-          <motion.div variants={fadeUp} className="home-features">
-            {features.map((feat, i) => (
-              <div key={i} className="home-feature">
-                <div style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  background: 'var(--bg-glass)',
-                  color: 'var(--accent)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  {feat.icon}
-                </div>
-                <div>
-                  <h4 style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 2 }}>
-                    {feat.title}
-                  </h4>
-                  <p style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                    {feat.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
           </motion.div>
         </div>
       </motion.div>
