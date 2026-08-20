@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Portfolio local/project screenshots
+src/assets/images/
+
+# Lint output
+lint-out.txt

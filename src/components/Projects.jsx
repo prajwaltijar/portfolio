@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineCodeBracket } from 'react-icons/hi2';
+import imgPowerfit from '../assets/images/powerfit.png';
+import imgHospitalAdmin from '../assets/images/hospital Admin.png';
 
 const projects = [
   {
@@ -13,20 +15,22 @@ const projects = [
     github: '#',
   },
   {
-    title: 'Blog Platform',
-    desc: 'Full-stack blog application with user authentication, CRUD operations, rich text editor integration, and a comment system.',
-    tech: ['MongoDB', 'Express', 'React', 'Node.js'],
-    image: null, // Add your image path here later
+    title: 'Traihub',
+    desc: 'A comprehensive fitness training platform featuring workout plans, membership services, and an admin dashboard for user management.',
+    tech: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+    image: imgPowerfit, // Add your image path here later
     link: '#',
     github: '#',
+    isTraihub: true,
   },
   {
-    title: 'Portfolio Website',
-    desc: 'Personal portfolio developed with React, utilizing a modular design system and custom smooth-scroll animations for premium UX.',
-    tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-    image: null, // Add your image path here later
+    title: 'Hospital Management',
+    desc: 'An advanced healthcare platform ensuring seamless interactions between patients, doctors, in-house pharmacy, and reception operations.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+    image: imgHospitalAdmin, // Added hospital image
     link: '#',
     github: '#',
+    isHospital: true,
   },
 ];
 
@@ -180,7 +184,7 @@ const styles = {
   },
 };
 
-const Projects = () => {
+const Projects = ({ onExploreTraihub, onExploreHospital }) => {
   return (
     <section id="projects" style={styles.section}>
       <div className="section-wrap relative z-10">
@@ -240,6 +244,47 @@ const Projects = () => {
                     <span key={j} style={styles.techPill}>{t}</span>
                   ))}
                 </div>
+
+                {proj.isTraihub && (
+                  <button
+                    onClick={() => onExploreTraihub && onExploreTraihub()}
+                    style={{
+                      marginTop: 20,
+                      padding: '10px 20px',
+                      background: 'var(--accent)',
+                      color: 'var(--bg-deep)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
+                {proj.isHospital && (
+                  <button
+                    onClick={() => onExploreHospital && onExploreHospital()}
+                    style={{
+                      marginTop: 20,
+                      padding: '10px 20px',
+                      background: 'var(--accent)',
+                      color: 'var(--bg-deep)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
