@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import profileImg from '../assets/images/ChatGPT Image Aug 19, 2026, 01_59_26 PM.png';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaRocket, FaCode, FaMobileAlt, FaRegUser } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { FiArrowUpRight, FiArrowDown } from 'react-icons/fi';
 import { Link } from 'react-scroll';
+import TypewriterText from './TypewriterText';
 import {
   SiReact, SiNodedotjs, SiMongodb, SiExpress,
   SiTailwindcss, SiJavascript, SiHtml5, SiCss, SiGit,
@@ -52,29 +53,6 @@ const fadeUp = {
 };
 
 const About = () => {
-  const [matterText, setMatterText] = useState('');
-
-  useEffect(() => {
-    const role = 'Matter.';
-    let characterIndex = 0;
-    let deleting = false;
-
-    const typeRole = () => {
-      setMatterText(role.slice(0, characterIndex));
-
-      if (!deleting && characterIndex < role.length) {
-        characterIndex += 1;
-      } else if (deleting && characterIndex > 0) {
-        characterIndex -= 1;
-      } else {
-        deleting = !deleting;
-      }
-    };
-
-    const interval = setInterval(typeRole, deleting ? 70 : 110);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section id="about" className="py-24 md:py-[120px]" style={{ position: 'relative' }}>
       <div className="section-wrap relative z-10">
@@ -88,7 +66,7 @@ const About = () => {
             className="flex flex-col justify-center w-full md:w-[55%] lg:w-[60%]"
           >
             <motion.p variants={fadeUp} style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 16, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
-              ABOUT ME
+              <TypewriterText text="ABOUT ME" />
             </motion.p>
             <motion.h2 variants={fadeUp} style={{
               fontFamily: 'var(--font-display)',
@@ -99,7 +77,7 @@ const About = () => {
               letterSpacing: '-0.02em',
               marginBottom: 24
             }}>
-              Building Digital <br /> Experiences <br /> <span style={{ whiteSpace: 'nowrap' }}>That <span style={{ color: 'var(--accent)' }}>{matterText}</span><span style={{ color: 'var(--accent)', fontWeight: 300, opacity: 0.8 }}></span></span>
+              Building Digital <br /> Experiences <br /> <span style={{ whiteSpace: 'nowrap' }}>That <span style={{ color: 'var(--accent)' }}><TypewriterText text="Matter." /></span><span style={{ color: 'var(--accent)', fontWeight: 300, opacity: 0.8 }}></span></span>
             </motion.h2>
             <motion.p variants={fadeUp} style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20 }}>
               I'm a passionate MERN Stack Developer who loves turning ideas into real-world web applications. I enjoy crafting clean, efficient, and user-friendly solutions that solve problems and create impact.
@@ -115,7 +93,7 @@ const About = () => {
                   View My Work <FiArrowUpRight size={18} />
                 </button>
               </Link>
-              <a href="https://drive.google.com/file/d/1R1VjDIhPycjl1fBinhz6WX5nOGJHXMY3/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '12px 24px', borderRadius: '8px', fontSize: 14 }}>
+              <a href="https://drive.google.com/file/d/15j0chlWeepq8rUgX6PheFpYR9uLwlp2E/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '12px 24px', borderRadius: '8px', fontSize: 14 }}>
                 Download Resume <FiArrowDown size={18} />
               </a>
             </motion.div>

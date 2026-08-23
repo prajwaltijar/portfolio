@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import TypewriterText from './TypewriterText';
 import { FaGithub, FaLinkedin, FaPaperPlane, FaBolt, FaShieldAlt } from 'react-icons/fa';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import { FiMessageSquare, FiUsers, FiSend } from 'react-icons/fi';
@@ -32,7 +33,11 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => { setSending(false); setSent(true); }, 1500);
+    setTimeout(() => {
+      setSending(false);
+      setSent(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    }, 1500);
   };
 
   return (
@@ -64,7 +69,7 @@ const Contact = () => {
                   marginBottom: 24
                 }}>
                   Let's build<br />
-                  something <span style={{ color: 'var(--accent)' }}>together.</span>
+                  something <span style={{ color: 'var(--accent)' }}><TypewriterText text="together." /></span>
                 </h2>
                 <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: 360 }}>
                   Currently available for freelance projects<br />and full-time opportunities.

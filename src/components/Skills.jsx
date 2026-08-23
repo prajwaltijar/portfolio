@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TypewriterText from './TypewriterText';
 import { Link } from 'react-scroll';
 import {
     SiJavascript, SiTypescript, SiPython, SiReact, SiNextdotjs,
@@ -29,14 +30,12 @@ const stagger = {
 /* ── Data ── */
 const languages = [
     { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E', level: 90 },
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6', level: 75 },
     { name: 'Python', icon: SiPython, color: '#3776AB', level: 60 },
     { name: 'Java', icon: FaJava, color: '#ED8B00', level: 50 },
 ];
 
 const frontend = [
     { name: 'React', icon: SiReact, color: '#61DAFB', level: 90 },
-    { name: 'Next.js', icon: SiNextdotjs, color: '#fff', level: 85 },
     { name: 'HTML5', icon: SiHtml5, color: '#E34F26', level: 95 },
     { name: 'CSS3', icon: SiCss, color: '#1572B6', level: 90 },
     { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4', level: 85 },
@@ -52,7 +51,6 @@ const backend = [
 const databases = [
     { name: 'MongoDB', icon: SiMongodb, color: '#47A248', level: 85 },
     { name: 'MySQL', icon: SiMysql, color: '#4479A1', level: 70 },
-    { name: 'Firebase', icon: SiFirebase, color: '#FFCA28', level: 60 },
 ];
 
 const otherTools = [
@@ -171,7 +169,7 @@ const Skills = () => {
                     <motion.div variants={fadeUp} style={{ maxWidth: 740 }}>
                         <span className="section-label" style={{ textAlign: 'center', margin: '0 auto 16px' }}>My Skills</span>
                         <h2 className="section-title" style={{ marginBottom: 16 }}>
-                            Technologies <span style={{ color: 'var(--accent)', whiteSpace: 'nowrap' }}>I work with</span>
+                            Technologies <span style={{ color: 'var(--accent)', whiteSpace: 'nowrap' }}><TypewriterText text="I work with" /></span>
                         </h2>
                         <p style={{
                             fontSize: 15, lineHeight: 1.7, color: 'var(--text-muted)',

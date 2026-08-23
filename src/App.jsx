@@ -11,8 +11,10 @@ import Hospital from './components/Hospital';
 import AiInterview from './components/AiInterview';
 import EmployeeManagement from './components/EmployeeManagement';
 import Frutefy from './components/Frutefy';
+import Career from './components/Career';
 
 function App() {
+  const [showCareer, setShowCareer] = React.useState(false);
   const [showTraihub, setShowTraihub] = React.useState(false);
   const [showHospital, setShowHospital] = React.useState(false);
   const [showAi, setShowAi] = React.useState(false);
@@ -26,6 +28,7 @@ function App() {
         <Home />
         <About />
         <Projects
+          onExploreCareer={() => setShowCareer(true)}
           onExploreTraihub={() => setShowTraihub(true)}
           onExploreHospital={() => setShowHospital(true)}
           onExploreAi={() => setShowAi(true)}
@@ -41,6 +44,7 @@ function App() {
       {showAi && <AiInterview onClose={() => setShowAi(false)} />}
       {showEmployee && <EmployeeManagement onClose={() => setShowEmployee(false)} />}
       {showFrutefy && <Frutefy onClose={() => setShowFrutefy(false)} />}
+      {showCareer && <Career onClose={() => setShowCareer(false)} />}
     </div>
   );
 }

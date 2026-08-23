@@ -1,21 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TypewriterText from './TypewriterText';
 import { FaGithub } from 'react-icons/fa';
-import { HiOutlineCodeBracket } from 'react-icons/hi2';
 import imgPowerfit from '../assets/images/powerfit.png';
 import imgHospitalAdmin from '../assets/images/hospital Admin.png';
 import imgAiLogin from '../assets/images/Ai inteview loging.png';
 import imgEms from '../assets/images/ems employee (1).png';
 import imgFrutefy from '../assets/images/frute home (1).png';
+import imgCareer from '../assets/images/career.png';
 
 const projects = [
   {
     title: 'Career Path App',
     desc: 'Career guidance platform helping students explore different paths and resources. Features user authentication and personalized roadmaps.',
     tech: ['React', 'Node.js', 'MongoDB', 'Express'],
-    image: null, // Add your image path here later
+    image: imgCareer,
     link: 'https://prajwalsondawalek.netlify.app/',
     github: '#',
+    isCareer: true,
   },
   {
     title: 'Traihub',
@@ -138,24 +140,6 @@ const styles = {
     objectPosition: 'center',
     background: '#0c1a16', // Dark background behind contained image
   },
-  iconBadge: {
-    position: 'absolute',
-    bottom: -18,
-    left: 24,
-    width: 42,
-    height: 42,
-    borderRadius: 12,
-    background: 'rgba(16, 32, 28, 0.95)',
-    border: '1px solid rgba(132, 214, 161, 0.2)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'var(--accent)',
-    fontSize: 20,
-    zIndex: 2,
-    backdropFilter: 'blur(8px)',
-    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-  },
   cardContent: {
     padding: '24px 20px 20px',
     display: 'flex',
@@ -215,7 +199,7 @@ const styles = {
   },
 };
 
-const Projects = ({ onExploreTraihub, onExploreHospital, onExploreAi, onExploreEmployee, onExploreFrutefy }) => {
+const Projects = ({ onExploreCareer, onExploreTraihub, onExploreHospital, onExploreAi, onExploreEmployee, onExploreFrutefy }) => {
   return (
     <section id="projects" style={styles.section}>
       <div className="section-wrap relative z-10">
@@ -228,7 +212,7 @@ const Projects = ({ onExploreTraihub, onExploreHospital, onExploreAi, onExploreE
         >
           <span className="section-label">Selected Work</span>
           <h2 className="section-title">
-            Projects <span style={styles.titleHighlight}>Showcase</span>
+            Projects <span style={styles.titleHighlight}><TypewriterText text="Showcase" /></span>
           </h2>
           <p style={styles.subtitle}>
             A collection of robust full-stack applications.<br />
@@ -258,10 +242,6 @@ const Projects = ({ onExploreTraihub, onExploreHospital, onExploreAi, onExploreE
                     {/* Empty placeholder — add your images later */}
                   </div>
                 )}
-                {/* Icon Badge */}
-                <div style={styles.iconBadge}>
-                  <HiOutlineCodeBracket />
-                </div>
               </div>
 
               {/* Card Content */}
@@ -290,6 +270,16 @@ const Projects = ({ onExploreTraihub, onExploreHospital, onExploreAi, onExploreE
                       cursor: 'pointer',
                       transition: 'opacity 0.3s',
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Explore More
+                  </button>
+                )}
+                {proj.isCareer && (
+                  <button
+                    onClick={() => onExploreCareer && onExploreCareer()}
+                    style={{ marginTop: 20, padding: '10px 20px', background: 'var(--accent)', color: 'var(--bg-deep)', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', transition: 'opacity 0.3s' }}
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
                   >

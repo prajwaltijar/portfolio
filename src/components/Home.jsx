@@ -132,7 +132,7 @@ const Home = () => {
               </button>
             </Link>
             <a
-              href="https://drive.google.com/file/d/1R1VjDIhPycjl1fBinhz6WX5nOGJHXMY3/view?usp=drivesdk"
+              href="https://drive.google.com/file/d/15j0chlWeepq8rUgX6PheFpYR9uLwlp2E/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
